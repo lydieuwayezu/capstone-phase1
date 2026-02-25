@@ -1,22 +1,4 @@
-
-
-const STORAGE_KEY = "favoriteBooks";
-
-export function getFavorites() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-}
-
-export function saveFavorites(favorites) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
-}
-
-
-import { removeFromFavorites } from "./favorites.js";
-
-
-
-
-
+import { getFavorites, removeFromFavorites } from "./favorites.js";
 
 const favoritesContainer = document.getElementById("favorites-container");
 const emptyMessage = document.getElementById("empty-message");
