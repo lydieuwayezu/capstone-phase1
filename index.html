@@ -5,44 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book Explorer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .fade-in { animation: fadeIn 0.5s ease-out; }
+    .book-card { transition: all 0.3s ease; }
+    .book-card:hover { transform: translateY(-8px); }
+    .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .search-focus:focus { box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); }
+  </style>
 </head>
 
-<body class="bg-gray-100 flex flex-col min-h-screen">
+<body class="bg-gray-100 flex flex-col min-h-screen pt-16">
 
   <!-- NAVBAR -->
-  <nav class="bg-white shadow-md ">
+  <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-opacity-95">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-600">📚 Book Explorer</h1>
-      <ul class="flex space-x-6 font-medium">
-        <li><a href="index.html" class="text-blue-600 font-bold">Home</a></li>
-        <li><a href="favorites.html" class="hover:text-blue-600">Favorites</a></li>
-        <li><a href="about.html" class="hover:text-blue-600">About</a></li>
+      <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">📚 Book Explorer</h1>
+      <button id="menu-btn" class="md:hidden text-2xl hover:text-blue-600 transition">☰</button>
+      <ul id="menu" class="hidden md:flex space-x-6 font-medium absolute md:relative top-16 md:top-0 left-0 right-0 bg-white md:bg-transparent flex-col md:flex-row p-4 md:p-0 shadow-md md:shadow-none">
+        <li><a href="index.html" class="text-blue-600 font-bold block py-2 md:py-0 hover:scale-110 transition-transform">Home</a></li>
+        <li><a href="favorites.html" class="hover:text-blue-600 block py-2 md:py-0 hover:scale-110 transition-transform">Favorites</a></li>
+        <li><a href="about.html" class="hover:text-blue-600 block py-2 md:py-0 hover:scale-110 transition-transform">About</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
-  <section class="text-center py-16 bg-blue-600 text-white">
-    <h2 class="text-4xl md:text-5xl font-bold mb-4">
-      Discover Your Next Favorite Book
+  <section class="text-center py-16 gradient-bg text-white">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4 fade-in">
+     Discover Your Next Favorite Book
     </h2>
-    <p class="text-lg md:text-xl mb-6">
+    <p class="text-lg md:text-xl mb-6 fade-in opacity-90">
       Browse, search, and save books you love.
     </p>
 
     <!-- Search Bar -->
-    <div class="flex justify-center">
+    <div class="flex flex-col sm:flex-row justify-center gap-2 sm:gap-0 px-4 fade-in">
       <input
         id="search-input"
         type="text"
-        placeholder="Search for books..."
-        class="w-64 md:w-96 px-4 py-2 rounded-l-md text-black focus:outline-none"
+        placeholder="🔍 Search for books..."
+        class="w-full sm:w-64 md:w-96 px-4 py-2 sm:rounded-l-md rounded-md sm:rounded-r-none text-black focus:outline-none search-focus"
       />
       <button
         id="search-btn"
-        class="bg-black px-6 py-2 rounded-r-md hover:bg-gray-800"
+        class="bg-black px-6 py-2 sm:rounded-r-md rounded-md sm:rounded-l-none hover:bg-gray-800 w-full sm:w-auto transition-all hover:shadow-lg"
       >
-        Search
+        🔎 Search
       </button>
     </div>
   </section>
@@ -50,10 +60,12 @@
   <!-- BOOK GRID -->
   <main class="flex-grow max-w-6xl mx-auto px-4 py-12">
     <div id="loading" class="hidden text-center text-gray-600">
+      <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
       <p class="text-xl">Loading books...</p>
     </div>
     
     <div id="no-results" class="hidden text-center text-gray-600">
+      <p class="text-6xl mb-4">📚</p>
       <p class="text-xl">No books found. Try a different search.</p>
     </div>
 
@@ -64,8 +76,8 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-white text-center py-6 shadow-inner">
-    <p class="text-gray-600">
+  <footer class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-6 shadow-inner">
+    <p>
       © 2026 Book Explorer | Built with ❤️ using Tailwind & JavaScript
     </p>
   </footer>

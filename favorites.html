@@ -5,38 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Favorites - Book Explorer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.5s ease-out; }
+    .book-card { transition: all 0.3s ease; }
+    .book-card:hover { transform: translateY(-8px); }
+  </style>
 </head>
 
-<body class="bg-gray-100 flex flex-col min-h-screen">
+<body class="bg-gray-100 flex flex-col min-h-screen pt-16">
 
   <!-- NAVBAR -->
-  <nav class="bg-white shadow-md">
+  <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-opacity-95">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-600">📚 Book Explorer</h1>
-      <ul class="flex space-x-6 font-medium">
-        <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
-        <li><a href="favorites.html" class="text-blue-600 font-bold">Favorites</a></li>
-        <li><a href="about.html" class="hover:text-blue-600">About</a></li>
+      <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">📚 Book Explorer</h1>
+      <button id="menu-btn" class="md:hidden text-2xl hover:text-blue-600 transition">☰</button>
+      <ul id="menu" class="hidden md:flex space-x-6 font-medium absolute md:relative top-16 md:top-0 left-0 right-0 bg-white md:bg-transparent flex-col md:flex-row p-4 md:p-0 shadow-md md:shadow-none">
+        <li><a href="index.html" class="hover:text-blue-600 block py-2 md:py-0 hover:scale-110 transition-transform">Home</a></li>
+        <li><a href="favorites.html" class="text-blue-600 font-bold block py-2 md:py-0 hover:scale-110 transition-transform">Favorites</a></li>
+        <li><a href="about.html" class="hover:text-blue-600 block py-2 md:py-0 hover:scale-110 transition-transform">About</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- MAIN CONTENT -->
   <main class="flex-grow max-w-6xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-bold mb-6">Your Favorite Books</h2>
+    <h2 class="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">❤️ Your Favorite Books</h2>
 
     <div id="favorites-container" class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     </div>
 
-    <div id="empty-message" class="hidden text-center text-gray-600 mt-12">
+    <div id="empty-message" class="hidden text-center text-gray-600 mt-12 fade-in">
+      <p class="text-6xl mb-4">📚</p>
       <p class="text-xl font-semibold">No favorite books yet.</p>
-      <p class="mt-2">Go to <a href="index.html" class="text-blue-600 hover:underline">Home</a> to add some!</p>
+      <p class="mt-2">Go to <a href="index.html" class="text-blue-600 hover:underline font-semibold">Home</a> to add some!</p>
     </div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-white text-center py-6 shadow-inner">
-    <p class="text-gray-600">
+  <footer class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-6 shadow-inner">
+    <p>
       © 2026 Book Explorer
     </p>
   </footer>
