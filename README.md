@@ -19,21 +19,11 @@ A responsive web application for discovering and saving your favorite books usin
 
 ## Project Structure
 
-```
-capstone1/
-├── index.html          # Home page with search
-├── favorites.html      # Favorites page
-├── about.html          # About page
-└── script/
-    ├── main.js         # Home page logic
-    ├── fetchbooks.js   # API calls
-    ├── favorites.js    # Favorites management
-    └── favoritesPage.js # Favorites page logic
-```
+
 
 ## How to Run
 
-1. Open `index.html` in a web browser
+1. Open index.html in a web browser
 2. Search for books or browse featured books
 3. Click "Add to Favorites" to save books
 4. View saved books in the Favorites page
